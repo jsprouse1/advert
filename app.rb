@@ -16,3 +16,20 @@ ActiveRecord::Base.establish_connection(
 class Customer < ActiveRecord::Base
 end
 
+get '/' do
+  @links = Link.order("id DESC")
+  erb :index
+end
+
+get '/create' do
+  erb :create
+end
+
+post '/create' do
+  link = Link.new(params[:link])
+  if link.save
+    redirect to "/"
+  else
+    return "failure!"
+  end
+end
