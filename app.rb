@@ -17,7 +17,7 @@ class Customer < ActiveRecord::Base
 end
 
 get '/' do
-  @links = Link.order("id DESC")
+  @links = Customer.order("id DESC")
   erb :index
 end
 
@@ -26,7 +26,7 @@ get '/create' do
 end
 
 post '/create' do
-  link = Link.new(params[:link])
+  link = Customer.new(params[:link])
   if link.save
     redirect to "/"
   else
